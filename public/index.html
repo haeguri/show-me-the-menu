@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SHOW ME THE MENU</title>
+    <style>
+        ul li.item {
+            display: block;
+        }
+
+        ul li.item img {
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h3>SHOW ME THE MENU</h3>
+    <div class="container">
+        <ul></ul>
+    </div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        var container = document.querySelector('.container');
+        var ul = document.querySelector('.container ul');
+
+        xhr.addEventListener('load', function(e) {
+            var jsonRes = JSON.parse(xhr.responseText);
+            console.log(jsonRes);
+            for(var i = 0; i < jsonRes.data.length; i++) {
+                var li = document.createElement('li');
+                li.className = 'item';
+                jsonRes.data[i].attachments.data.forEach(function(value, index){
+                    // 서브 메뉴가 나오는 날.
+                    if(value.hasOwnProperty('subattachments')) {
+                        var title = document.createElement('h4');
+                        value.subattachments.data.forEach(function(value, index) {
+                            var imgElem = document.createElement('img');
+                            imgElem.src = value.media.image.src;
+                            li.appendChild(imgElem);
+                        });
+                    } 
+                    // 서브 메뉴가 없는 날.
+                    else {
+                        var imgElem = document.createElement('img');
+                        imgElem.src = value.media.image.src;
+                        li.appendChild(imgElem);
+                    }
+                })
+
+                ul.appendChild(li);
+            }
+        });
+
+        xhr.addEventListener('error', function(e) {
+            console.log(xhr.responseText);
+        })
+
+        xhr.open('GET', '/api/menus');
+        xhr.send();
+    </script>
+</body>
+</html>
