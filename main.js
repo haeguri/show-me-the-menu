@@ -21,7 +21,7 @@ app.listen(3000, () => {
 })
 
 app.get('/api/menus', (req, res) => {
-    request(`${GRAPH_URL}/v2.9/${CAFE_OTTIMO}/feed?fields=attachments&access_token=${access_token}`, (error, response, body) => {
+    request(`${GRAPH_URL}/v2.9/${CAFE_OTTIMO}/feed?fields=attachments,message,created_time&access_token=${access_token}`, (error, response, body) => {
         res.send(body);
     })
     // res.send('only route');

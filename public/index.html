@@ -8,6 +8,7 @@
     <style>
         ul li.item {
             display: block;
+            border: solid 1px black;
         }
 
         ul li.item img {
@@ -29,23 +30,39 @@
         xhr.addEventListener('load', function(e) {
             var jsonRes = JSON.parse(xhr.responseText);
             console.log(jsonRes);
+
             for(var i = 0; i < jsonRes.data.length; i++) {
                 var li = document.createElement('li');
+                var hElem = document.createElement('h4');
+                var preElem = document.createElement('pre');
+
+                var createdTime = new Date(jsonRes.data[i].created_time);
+                var year = createdTime.getFullYear();
+                var month = createdTime.getMonth()+1;
+                var date = createdTime.getDate();
+                var hour = createdTime.getHours();
+                var minute = createdTime.getMinutes();
+
                 li.className = 'item';
-                jsonRes.data[i].attachments.data.forEach(function(value, index){
-                    // 서브 메뉴가 나오는 날.
-                    if(value.hasOwnProperty('subattachments')) {
-                        var title = document.createElement('h4');
-                        value.subattachments.data.forEach(function(value, index) {
+                hElem.innerText = year + '년 ' + month + '월 ' + date + '일 ' + hour + ':' + minute;
+                preElem.innerHTML = jsonRes.data[i].message;
+
+                li.appendChild(hElem);
+                li.appendChild(preElem);
+
+                jsonRes.data[i].attachments.data.forEach(function(obj, index){
+                    // 서브 메뉴가 나올 때 
+                    if(obj.hasOwnProperty('subattachments')) {
+                        obj.subattachments.data.forEach(function(obj, index) {
                             var imgElem = document.createElement('img');
-                            imgElem.src = value.media.image.src;
+                            imgElem.src = obj.media.image.src;
                             li.appendChild(imgElem);
                         });
                     } 
-                    // 서브 메뉴가 없는 날.
+                    // 서브 메뉴가 없을 때
                     else {
                         var imgElem = document.createElement('img');
-                        imgElem.src = value.media.image.src;
+                        imgElem.src = obj.media.image.src;
                         li.appendChild(imgElem);
                     }
                 })
