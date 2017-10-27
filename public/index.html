@@ -45,7 +45,27 @@
 
                 li.className = 'item';
                 hElem.innerText = year + '년 ' + month + '월 ' + date + '일 ' + hour + ':' + minute;
-                preElem.innerHTML = jsonRes.data[i].message;
+
+                var feedMessage = jsonRes.data[i].message;
+                var foodList = feedMessage.split('\n');
+                foodList = foodList.slice(1); // 첫째 줄의 정보는 날짜 정보니까 버림.
+                
+                var mainFoods = [];
+                var subFoods = [];
+                var isMainFood = true;
+
+                foodList.forEach(function(value, index) {
+                    if(value.trim('') === 'ㅡ') {
+                        isMainFood = false;
+                        return;
+                    }
+
+                    if(isMainFood) {
+                        mainFoods.push(value);
+                    } else {
+                        subFoods.push(value);
+                    }
+                })
 
                 li.appendChild(hElem);
                 li.appendChild(preElem);
@@ -68,6 +88,7 @@
                 })
 
                 ul.appendChild(li);
+                debugger;
             }
         });
 
