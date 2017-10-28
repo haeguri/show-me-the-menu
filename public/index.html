@@ -6,26 +6,130 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SHOW ME THE MENU</title>
     <style>
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Nanum Gothic';
+        }
+
+        body {
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding-top: 10px;
+        }
+
+        nav h3 {
+            margin: 0;
+        }
+
+        main {
+            margin-top: 50px;
+        }
+
+        ul {
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
         ul li.item {
             display: block;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
             border: solid 1px black;
+            padding-left: 10px;
+            padding-right: 10px; 
+            border: solid 1px #d0d0d0;
+            border-radius: 5px;
+        }
+
+        ul li.item .item-header .badge {
+            padding: 3px 5px;
+            background-color: orange;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+        
+        ul li.item .item-header .title {
+            display: inline-block;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        ul li.item .item-img img {
+            width: 100%;
+        }
+
+        ul li.item .item-msg {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
 
         ul li.item img {
             display: inline-block;
             width: 200px;
         }
+
+        
     </style>
 </head>
 <body>
-    <h3>SHOW ME THE MENU</h3>
-    <div class="container">
-        <ul></ul>
-    </div>
+    <nav>
+        <h3>SHOW ME THE MENU</h3>
+    </nav>
+    <main>
+        <div class="container">
+            <ul>
+                <!-- 카드... -->
+                <li class="item">
+                    <div class="item-header">
+                        <span class="badge">점심</span>
+                        <h3 class="title">2017년 10월 27일 11시 30분</h3>
+                    </div>
+                    <div class="item-img">
+                        <img src="https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/22788748_1851594094870332_2260014641843095724_n.jpg?oh=b875db91907374273106a0e0d806150d&oe=5A69933E" alt="">
+                    </div>
+                    <div class="item-msg">
+                        <ul class="food-list">
+                            <li class="food">백미밥 / 시래기국</li>
+                            <li class="food">돼지고기볶음</li>
+                            <li class="food">배추김치</li>
+                            <li class="food">감자볶음</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <h3 style="height:300px;">.</h3>
+            <ul class="sample"></ul>
+        </div>
+    </main>
     <script>
         var xhr = new XMLHttpRequest();
         var container = document.querySelector('.container');
-        var ul = document.querySelector('.container ul');
+        var ul = document.querySelector('.container ul.sample');
+
+        function getTimeBadge(hour) {
+            if(0 <= hour && hour < 14) {
+                return '점심';
+            } 
+            else if(14 <= hour && hour < 20){
+                return '저녁';
+            }
+        }
 
         xhr.addEventListener('load', function(e) {
             var jsonRes = JSON.parse(xhr.responseText);
@@ -88,7 +192,6 @@
                 })
 
                 ul.appendChild(li);
-                debugger;
             }
         });
 
