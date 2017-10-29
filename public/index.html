@@ -151,32 +151,27 @@
 
                 // 서브 메뉴가 안나온다.
                 if(menuList.length === 1) {
-                    var itemElement = createItemElement();
-                    itemElement = createItemHeader(itemElement, headerData);
                     var imgData = jsonRes.data[i].attachments.data[0];
-                    itemElement = createItemImg(itemElement, {
-                        imgSrc: imgData.media.image.src
-                    });
-
-                    itemElement = createItemMsg(itemElement, {
+                    var itemElement = createItemElement({
+                        headerData: headerData,
+                        imgSrc: imgData.media.image.src,
                         foodList: menuList[0]
                     });
+
                     ul.appendChild(itemElement);
                 }
                 // 서브 메뉴가 나온다.
                 else if ( menuList.length > 1 ) {
-                    // 서브 메뉴의 개수대로 카드를 하나 더 만들어야 한다.
+                    // 서브 메뉴의 개수대로 카드를 더 만들어야 한다.
                     jsonRes.data[i].attachments.data.forEach(function(obj, index){
                         if(obj.hasOwnProperty('subattachments')) {
                             obj.subattachments.data.forEach(function(obj, index) {
-                                var itemElement = createItemElement();
-                                itemElement = createItemHeader(itemElement, headerData);
-                                itemElement = createItemImg(itemElement, {
-                                    imgSrc: obj.media.image.src
-                                });
-                                itemElement = createItemMsg(itemElement, {
+                                var itemElement = createItemElement({
+                                    headerData: headerData,
+                                    imgSrc: obj.media.image.src,
                                     foodList: menuList[index]
                                 });
+
                                 ul.appendChild(itemElement);
                             });
                         }
@@ -203,9 +198,21 @@
             }
         }
 
-        function createItemElement() {
+        function createItemElement(data) {
+            var headerData = data.headerData;
+            var imgSrc = data.imgSrc;
+            var foodList = data.foodList;
+
             var itemElement = document.createElement('li');
             itemElement.className = 'item';
+
+            itemElement = createItemHeader(itemElement, headerData);
+            itemElement = createItemImg(itemElement, {
+                imgSrc: imgSrc
+            });
+            itemElement = createItemMsg(itemElement, {
+                foodList: foodList
+            });
 
             return itemElement;
         }
