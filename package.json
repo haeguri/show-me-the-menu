@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel watch index.html -d build --public-url ./",
+    "l-server": "live-server --open=build/index.html"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "exceljs": "^0.6.2",
     "express": "^4.16.2",
-    "fb": "^2.0.0"
+    "fb": "^2.0.0",
+    "parcel-bundler": "^1.2.0"
   }
 }
