@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "parcel watch index.html -d build --public-url ./",
     "build": "parcel build index.html -d build --public-url ./ --no-minify",
