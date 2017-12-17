@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "parcel watch index.html -d build --public-url ./",
+    "build": "parcel build index.html -d build --public-url ./ --no-minify",
     "l-server": "live-server --open=build/index.html"
   },
   "author": "",

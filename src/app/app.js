@@ -1,7 +1,7 @@
 let container = document.querySelector('.container');
 let ul = document.querySelector('.container ul.item-list');
 
-const REQUEST_URL = 'http://127.0.0.1:3000/api/menus';
+const REQUEST_URL = 'http://view-menus.herokuapp.com:3000/';
 
 fetch(REQUEST_URL).then((res) => { 
                     res.json().then((data) => onFetchSuccess(data)) 
