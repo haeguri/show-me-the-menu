@@ -3,7 +3,6 @@
 .DS_STORE
 .vscode/
 .cache/
-.babelrc
 build/
 package-lock.json
 
