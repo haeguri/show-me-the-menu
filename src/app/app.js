@@ -9,7 +9,7 @@ fetch('/api/menus/').then((res) => {
 
 function onFetchSuccess(jsonRes) {
     for(let i = 0; i < jsonRes.data.length; i++) {
-        let createdTime = new Date(jsonRes.data[i].created_time);
+        let createdTime = new Date(jsonRes.data[i].created_time * 1000);
 
         let headerData = {
             year: createdTime.getFullYear(),
