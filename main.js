@@ -3,7 +3,7 @@ const cors = require('cors');
 const request = require('request');
 const app = express();
 
-app.use(express.static('build'));
+app.use(express.static('dist'));
 
 const GRAPH_URL = 'https://graph.facebook.com'
 const APP_ID = process.env.FB_APP_ID;

@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 let container = document.querySelector('.container');
 let ul = document.querySelector('.container ul.item-list');
 
