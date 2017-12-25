@@ -2,8 +2,9 @@ import 'whatwg-fetch';
 
 let container = document.querySelector('.container');
 let ul = document.querySelector('.container ul.item-list');
+const URL = 'http://localhost:3000/api/menus';
 
-fetch('/api/menus/').then((res) => { 
+fetch(URL).then((res) => { 
                     res.json().then((data) => onFetchSuccess(data)) 
                 }).catch((res) => 
                     console.log('error raised', res)

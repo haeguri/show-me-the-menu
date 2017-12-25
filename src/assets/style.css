@@ -1,8 +1,36 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+@font-face {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 700;
+    src: local('Spoqa Han Sans Bold'),
+    url('./fonts/spoqa-han-sans/Spoqa Han Sans Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 400;
+    src: local('Spoqa Han Sans Regular'),
+    url('./fonts/spoqa-han-sans/Spoqa Han Sans Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 300;
+    src: local('Spoqa Han Sans Light'),
+    url('./fonts/spoqa-han-sans/Spoqa Han Sans Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans';
+    font-weight: 100;
+    src: local('Spoqa Han Sans Thin'),
+    url('./fonts/spoqa-han-sans/Spoqa Han Sans Thin.ttf') format('truetype');
+}
+
 * {
     box-sizing: border-box;
-    font-family: 'Nanum Gothic';
+    font-family: 'Spoqa Han Sans';
 }
 
 body {
@@ -16,7 +44,7 @@ nav {
     top: 0;
     height: 50px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     padding-top: 10px;
 }
 
@@ -33,21 +61,35 @@ ul {
     margin: 0;
 }
 
+ul.item-list {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 li {
     list-style-type: none;
 }
 
 ul li.item {
     display: block;
-    width: 400px;
     margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
     border: solid 1px black;
     padding-left: 10px;
     padding-right: 10px; 
     border: solid 1px #d0d0d0;
     border-radius: 5px;
+}
+
+.food-list .food::before {
+    display: inline-block;
+    content: '';
+    width: 1px;
+    border: solid 1px black;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 ul li.item .item-header .badge {
@@ -65,7 +107,6 @@ ul .item .item-header .badge.dinner {
 ul li.item .item-header .title {
     display: inline-block;
     font-weight: 500;
-    letter-spacing: -1px;
     margin-left: 5px;
 }
 
